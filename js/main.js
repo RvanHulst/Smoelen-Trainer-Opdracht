@@ -31,6 +31,9 @@ const fotoPersoon = ['fotopersoon1', 'fotopersoon2', 'fotopersoon3', 'fotopersoo
 
 function gridItems() {
    
+    naamPersoon.sort(() => Math.random() - 0.5);
+    fotoPersoon.sort(() => Math.random() - 0.5);
+
     for (let index = 0; index < naamPersoon.length; index++ ) {
        
         var naam = document.createElement("div");
@@ -39,6 +42,7 @@ function gridItems() {
         gridContainer.appendChild(naam);
         gridContainer.appendChild(foto);
     
+
         naam.innerHTML = naamPersoon[index];
         foto.innerHTML = fotoPersoon[index];
     
@@ -46,4 +50,6 @@ function gridItems() {
         foto.classList.add("gridItem")
     
     }
+
+    console.log(fotoPersoon)
   }
