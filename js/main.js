@@ -69,8 +69,21 @@ function itemOnclick(nummer){
     }
 }
 
+// #3 Als gebruiker kan ik in de trainer een willekeurige volgorde één naam en één foto aanklikken. 
+// Als ze bij dezelfde persoon horen dan verdwijnen beide
 
-// maak een onclick functie voor aanklikken van de namen en fotos
-// functie, wanneer je klikt run console log
 
-// zorgen dat de juiste namen console loggen op de juiste possitie (ook voor de foto's)
+//functie maken de checked als ze bij elkaar horen
+// geeft een true als ze bij elkaar horen en geeft een false als ze  niet bij elkaar horen.
+
+
+
+
+function compare(){
+if (condition) {
+    
+}
+else{
+    
+}
+}
