@@ -5,7 +5,10 @@ const persoon = [
     {name: 'Persoon3', img: "fotopersoon3"},
     {name: 'Persoon4', img: "fotopersoon4"}
 ]
-    
+
+var naamCompare;
+var fotoCompare;
+
 const naamPersoon = ['Persoon1', 'Persoon2', 'Persoon3', 'Persoon4'];
 const fotoPersoon = ['fotopersoon1', 'fotopersoon2', 'fotopersoon3', 'fotopersoon4'];
 
@@ -62,10 +65,12 @@ function itemOnclick(nummer){
     var foto = document.getElementById('persoonFoto' + nummer);
 
     naam.onclick = function () {
-        console.log(naam);
+        naamCompare = persoon.findIndex(findNaam => findNaam.name === naam.innerHTML);
+        compare();
     }
     foto.onclick = function () {
-        console.log(foto);
+        fotoCompare = naam.innerHTML;
+        compare();
     }
 }
 
@@ -80,10 +85,13 @@ function itemOnclick(nummer){
 
 
 function compare(){
-if (condition) {
-    
-}
-else{
-    
-}
+    if (naamCompare && fotoCompare == null) {
+       
+        console.log("test")
+
+    }
+    //Haal data op die je kan gebruiken met de "persoon" array
+
+
+// if array doorheen lopen en dan weer door heen lopen en dan vergelijken met de zelfde getalof naam
 }
