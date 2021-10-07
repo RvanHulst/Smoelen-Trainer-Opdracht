@@ -47,32 +47,61 @@ function gridItems() {
         naam.innerHTML = naamPersoon[index];
         foto.innerHTML = fotoPersoon[index];
  
-        naam.id = "persoonNaam" + [index];
-        foto.id = "persoonFoto" + [index];
+        naam.id = naamPersoon[index];
+        foto.id = fotoPersoon[index];
 
         naam.classList.add("gridItem")
         foto.classList.add("gridItem")
 
         //run functie "itemOnclick"
         //geef parameter [index] mee (Bijv op for loop 1 geeft hij "0" mee) 
-        itemOnclick([index]);
+        itemOnclick(naamPersoon[index], fotoPersoon[index]);
     }
-    console.log(fotoPersoon)
 }
 
-function itemOnclick(nummer){
-    var naam = document.getElementById('persoonNaam' + nummer);
-    var foto = document.getElementById('persoonFoto' + nummer);
+function itemOnclick(naamNummer, fotoNummer){
+    var naam = document.getElementById(naamNummer);
+    var foto = document.getElementById(fotoNummer);
 
-    naam.onclick = function () {
-        naamCompare = persoon.findIndex(findNaam => findNaam.name === naam.innerHTML);
-        compare();
-    }
+    naam.onclick = function () { checkClick(this.id); }
     foto.onclick = function () {
-        fotoCompare = naam.innerHTML;
-        compare();
+        //fotoCompare = persoon.findIndex(findFoto => findFoto.img === foto.innerHTML);
+        //console.log(fotoCompare)
+        //compare();
+        checkClick(event);
+
     }
 }
+
+var lastClick
+
+
+function checkClick(parameter){
+    console.log('The this: ', parameter);
+    //console.log(event.target.id)  
+
+    //if statement die controleerd of last click niet leeg is EN of last click als die gelijk is aan de nieuwe event data atributte.
+    
+    
+    //zo ja match.
+   
+   
+    //zo nee maak leeg.
+    
+    // if in een if statment met de laatste een else
+    
+    
+    //  element.getAttribute('data-name');
+
+}
+
+
+
+
+
+
+
+
 
 // #3 Als gebruiker kan ik in de trainer een willekeurige volgorde één naam en één foto aanklikken. 
 // Als ze bij dezelfde persoon horen dan verdwijnen beide
@@ -83,11 +112,13 @@ function itemOnclick(nummer){
 
 
 
+// maak een if functie aan die Correct geeft als ze bij elkaar horen, 
+// maak een else functioe aan als die incorrect is als ze niet bij elkaar horen.
+
 
 function compare(){
-    if (naamCompare && fotoCompare == null) {
-       
-        console.log("test")
+    if (naamCompare == fotoCompare) {
+        
 
     }
     //Haal data op die je kan gebruiken met de "persoon" array
