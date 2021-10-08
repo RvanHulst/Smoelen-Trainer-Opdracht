@@ -78,7 +78,9 @@ function checkClick(parameter){
         //Kijk of de cijfers gelijk zijn van lastchar en lastchar prev
         //Kijk of het div element hetzelfde is van lastClick en parameter
         if (lastCharPrev == lastChar && lastClick != parameter) {
-            console.log("Geen joden")
+            console.log("Het is een match")
+            parameter.style.display = "none";
+            lastClick.style.display = "none";
             lastClick = "";
         
         }
