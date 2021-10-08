@@ -72,7 +72,7 @@ function itemOnclick(naamNummer, fotoNummer){
 
 function checkClick(parameter){
     var lastChar = parameter.id.substr(parameter.id.length - 1);
-    var lastCharPrev = lastClick.id.substr(lastClick.id.length - 1);
+    if (lastClick) var lastCharPrev = lastClick.id.substr(lastClick.id.length - 1);  
 
     if (lastClick) {
         //Kijk of de cijfers gelijk zijn van lastchar en lastchar prev
@@ -91,10 +91,5 @@ function checkClick(parameter){
         console.log('Filling lastclick because its empty: ', parameter);
         lastClick = parameter;
     }
-
-        // Bestaat lastClick.
-        // Zo ja, ga dan vergelijken.
-        //zo niet vul hem op.
-
 }
 
