@@ -27,9 +27,20 @@ window.onload = function() {
 startKnop.onclick = function () {
     startPagina.style.display = "none"; //verander terug naar none
     smoelenTrainer.style.display = "block";
-    
     gridItems()
 }
+
+var timeleft = 10;
+var downloadTimer = setInterval(function(){
+  if(timeleft <= 0){
+    clearInterval(downloadTimer);
+    document.getElementById("countdown").innerHTML = alert("tijd is om");
+  } else {
+    document.getElementById("countdown").innerHTML = timeleft + " seconds remaining";
+  }
+  timeleft -= 1;
+}, 1000);
+
 
 function gridItems() {
    
