@@ -9,6 +9,8 @@ const persoon = [
 var naamCompare;
 var fotoCompare;
 var lastClick;
+var goedCount = 0;
+var foutCount = 0;
 
 const naamPersoon = ['Persoon1', 'Persoon2', 'Persoon3', 'Persoon4'];
 const fotoPersoon = ['fotopersoon1', 'fotopersoon2', 'fotopersoon3', 'fotopersoon4'];
@@ -29,17 +31,6 @@ startKnop.onclick = function () {
     smoelenTrainer.style.display = "block";
     gridItems()
 }
-
-var timeleft = 10;
-var downloadTimer = setInterval(function(){
-  if(timeleft <= 0){
-    clearInterval(downloadTimer);
-    document.getElementById("countdown").innerHTML = alert("tijd is om");
-  } else {
-    document.getElementById("countdown").innerHTML = timeleft + " seconds remaining";
-  }
-  timeleft -= 1;
-}, 1000);
 
 
 function gridItems() {
@@ -70,6 +61,16 @@ function gridItems() {
         //geef parameter [index] mee (Bijv op for loop 1 geeft hij "0" mee) 
         itemOnclick(naamPersoon[index], fotoPersoon[index]);
     }
+      var timeleft = 10;
+        var downloadTimer = setInterval(function(){
+            if(timeleft <= 0){
+             clearInterval(downloadTimer);
+            document.getElementById("countdown").innerHTML = alert("tijd is om");
+            } else {
+            document.getElementById("countdown").innerHTML = timeleft + " seconds remaining";
+            }
+             timeleft -= 1;
+            }, 1000);
 }
 
 function itemOnclick(naamNummer, fotoNummer){
@@ -93,11 +94,14 @@ function checkClick(parameter){
             parameter.style.display = "none";
             lastClick.style.display = "none";
             lastClick = "";
+            document.getElementById("pointsGoed").innerHTML = goedCount + 1 + "Heeft u er goed";
         
         }
         else{
-            console.log('Filling lastclick because its empty: ', parameter);
+            console.log('Hij is fout ', parameter);
             lastClick = parameter;
+            document.getElementById("pointsFout").innerHTML = foutCount + 1 + "Heeft u er fout";
+            
         }
     }
     else{
