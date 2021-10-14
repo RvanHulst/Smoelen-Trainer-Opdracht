@@ -30,6 +30,7 @@ startKnop.onclick = function () {
     startPagina.style.display = "none"; //verander terug naar none
     smoelenTrainer.style.display = "block";
     gridItems()
+    time()
 }
 
 
@@ -61,16 +62,33 @@ function gridItems() {
         //geef parameter [index] mee (Bijv op for loop 1 geeft hij "0" mee) 
         itemOnclick(naamPersoon[index], fotoPersoon[index]);
     }
-      var timeleft = 10;
-        var downloadTimer = setInterval(function(){
-            if(timeleft <= 0){
-             clearInterval(downloadTimer);
-            document.getElementById("countdown").innerHTML = alert("tijd is om");
-            } else {
-            document.getElementById("countdown").innerHTML = timeleft + " seconds remaining";
-            }
-             timeleft -= 1;
-            }, 1000);
+}
+
+function time(){
+    var timeleft = document.getElementById("userInput").value;
+    if (!timeleft) { timeleft = 10; }
+
+    var downloadTimer = setInterval(function(){
+    if(timeleft <= 0){
+        clearInterval(downloadTimer);
+        document.getElementById("countdown").innerHTML = "tijd is om";
+        setTimeout(() => {
+            startPagina.style.display = "block"; //verander terug naar none
+            smoelenTrainer.style.display = "none";
+            gridContainer.innerHTML = "";
+            document.getElementById("pointsGoed").innerHTML = "";
+            document.getElementById("pointsFout").innerHTML = "";
+        }, 3000);
+
+        
+
+    } else {
+        document.getElementById("countdown").innerHTML = timeleft + " seconds remaining";
+    }
+        timeleft -= 1;
+    }, 1000);
+
+
 }
 
 function itemOnclick(naamNummer, fotoNummer){
@@ -94,13 +112,15 @@ function checkClick(parameter){
             parameter.style.display = "none";
             lastClick.style.display = "none";
             lastClick = "";
-            document.getElementById("pointsGoed").innerHTML = goedCount + 1 + "Heeft u er goed";
+            goedCount = goedCount + 1;
+            document.getElementById("pointsGoed").innerHTML = goedCount + "Heeft u er goed";
         
         }
         else{
             console.log('Hij is fout ', parameter);
-            lastClick = parameter;
-            document.getElementById("pointsFout").innerHTML = foutCount + 1 + "Heeft u er fout";
+            lastClick = "";
+            foutCount = foutCount + 1;
+            document.getElementById("pointsFout").innerHTML = foutCount  + "Heeft u er fout";
             
         }
     }
