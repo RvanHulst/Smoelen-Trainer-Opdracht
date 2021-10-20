@@ -28,11 +28,23 @@ window.onload = function() {
 
 startKnop.onclick = function () {
     startPagina.style.display = "none"; //verander terug naar none
+    instellingenPagina.style.display = "none";
     smoelenTrainer.style.display = "block";
     gridItems()
     time()
 }
 
+instellingenKnop.onclick = function () {
+    startPagina.style.display = "none"; //verander terug naar none
+    smoelenTrainer.style.display = "none";
+    instellingenPagina.style.display = "block";
+}
+
+terugKnop.onclick = function () {
+startPagina.style.display = "block"; //verander terug naar none
+smoelenTrainer.style.display = "none";
+instellingenPagina.style.display = "none";
+}
 
 function gridItems() {
    
