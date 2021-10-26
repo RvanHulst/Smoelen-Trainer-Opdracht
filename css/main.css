@@ -12,6 +12,10 @@
   display: none;
 }
 
+#instellingenPagina {
+  display: none;
+}
+
 #gridContainer {
   display: grid;
   grid-template-columns: auto auto;

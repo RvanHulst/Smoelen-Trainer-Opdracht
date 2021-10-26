@@ -6,14 +6,17 @@ const persoon = [
     {name: 'Persoon4', img: "fotopersoon4"}
 ]
 
+var naamArray = []
+var fotoArray = []
+
 var naamCompare;
 var fotoCompare;
 var lastClick;
 var goedCount = 0;
 var foutCount = 0;
 
-const naamPersoon = ['Persoon1', 'Persoon2', 'Persoon3', 'Persoon4'];
-const fotoPersoon = ['fotopersoon1', 'fotopersoon2', 'fotopersoon3', 'fotopersoon4'];
+const naamPersoon = ['Persoon1', 'Persoon2', 'Persoon3', 'Persoon4', 'Persoon5', 'Persoon6', 'Persoon7', 'Persoon8', 'Persoon9', 'Persoon10', 'Persoon11'];
+const fotoPersoon = ['fotopersoon1', 'fotopersoon2', 'fotopersoon3', 'fotopersoon4', 'fotopersoon5', 'fotopersoon6', 'fotopersoon7', 'fotopersoon8', 'fotopersoon9', 'fotopersoon10', 'fotopersoon11'];
 
 window.onload = function() {
     var aantalMensen = document.getElementsByClassName('aantalMensen'); // haal radio buttons op bij class.
@@ -47,22 +50,17 @@ instellingenPagina.style.display = "none";
 }
 
 function gridItems() {
-   
-    naamPersoon.sort(() => Math.random() - 0.5);
-    fotoPersoon.sort(() => Math.random() - 0.5);
+    var persoonData = getRadioBtn();
+    if (!persoonData) {
+        persoonData = 5;
+    }
 
-    for (let index = 0; index < naamPersoon.length; index++ ) {
-       
+    for (let index = 0; index < persoonData; index++ ) {
         var naam = document.createElement("div");
         var foto = document.createElement("div");
     
-        gridContainer.appendChild(naam);
-        gridContainer.appendChild(foto);
-    
-
         naam.innerHTML = naamPersoon[index];
         foto.innerHTML = fotoPersoon[index];
-        //foto.src = "https://picsum.photos/200";
  
         naam.id = naamPersoon[index];
         foto.id = fotoPersoon[index];
@@ -70,9 +68,19 @@ function gridItems() {
         naam.classList.add("gridItem")
         foto.classList.add("gridItem")
 
+        naamArray.push(naam);
+        fotoArray.push(foto);
+    }
+    naamArray.sort(() => Math.random() - 0.5);
+    fotoArray.sort(() => Math.random() - 0.5);
+
+    for (let i = 0; i < naamArray.length; i++) {
+        gridContainer.appendChild(naamArray[i]);
+        gridContainer.appendChild(fotoArray[i]);
+
         //run functie "itemOnclick"
         //geef parameter [index] mee (Bijv op for loop 1 geeft hij "0" mee) 
-        itemOnclick(naamPersoon[index], fotoPersoon[index]);
+        itemOnclick(naamArray[i].id, fotoArray[i].id);
     }
 }
 
@@ -90,17 +98,16 @@ function time(){
             gridContainer.innerHTML = "";
             document.getElementById("pointsGoed").innerHTML = "";
             document.getElementById("pointsFout").innerHTML = "";
+            naamArray = [];
+            fotoArray = [];
+            foutCount = 0;
+            goedCount = 0;
         }, 3000);
-
-        
-
     } else {
         document.getElementById("countdown").innerHTML = timeleft + " seconds remaining";
     }
         timeleft -= 1;
     }, 1000);
-
-
 }
 
 function itemOnclick(naamNummer, fotoNummer){
@@ -110,7 +117,6 @@ function itemOnclick(naamNummer, fotoNummer){
     naam.onclick = function () { checkClick(this); }
     foto.onclick = function () { checkClick(this); }
 }
-
 
 function checkClick(parameter){
     var lastChar = parameter.id.substr(parameter.id.length - 1);
@@ -126,19 +132,27 @@ function checkClick(parameter){
             lastClick = "";
             goedCount = goedCount + 1;
             document.getElementById("pointsGoed").innerHTML = goedCount + "Heeft u er goed";
-        
         }
         else{
             console.log('Hij is fout ', parameter);
             lastClick = "";
             foutCount = foutCount + 1;
             document.getElementById("pointsFout").innerHTML = foutCount  + "Heeft u er fout";
-            
         }
     }
     else{
         console.log('Filling lastclick because its empty: ', parameter);
         lastClick = parameter;
+    }
+}
+
+function getRadioBtn(){
+    var radios = document.getElementsByName('spelerAantal');
+
+    for (var i = 0, length = radios.length; i < length; i++) {
+        if (radios[i].checked) {
+            return radios[i].value;
+        }
     }
 }
 
