@@ -5,6 +5,7 @@ const persoon = [
     {name: 'Persoon3', img: "fotopersoon3"},
     {name: 'Persoon4', img: "fotopersoon4"}
 ]
+var scoreGeschiedenis = []
 
 var naamArray = []
 var fotoArray = []
@@ -32,6 +33,7 @@ window.onload = function() {
 startKnop.onclick = function () {
     startPagina.style.display = "none"; //verander terug naar none
     instellingenPagina.style.display = "none";
+    geschiedenisPagina.style.display = "none";
     smoelenTrainer.style.display = "block";
     gridItems()
     time()
@@ -41,12 +43,36 @@ instellingenKnop.onclick = function () {
     startPagina.style.display = "none"; //verander terug naar none
     smoelenTrainer.style.display = "none";
     instellingenPagina.style.display = "block";
+    geschiedenisPagina.style.display = "none";
 }
 
-terugKnop.onclick = function () {
-startPagina.style.display = "block"; //verander terug naar none
-smoelenTrainer.style.display = "none";
-instellingenPagina.style.display = "none";
+geschiedenisKnop.onclick = function () {
+    startPagina.style.display = "none"; //verander terug naar none
+    smoelenTrainer.style.display = "none";
+    instellingenPagina.style.display = "none";
+    geschiedenisPagina.style.display = "block";
+    document.getElementById('matchGeschiedenis').innerHTML = "";
+    for (let i = 0; i < scoreGeschiedenis.length; i++) {
+        if (i <= 10) {
+            var p = document.createElement("p");
+            p.innerHTML = "Juiste antwoorden " + scoreGeschiedenis[i].Goed + " Onjuiste antwoorden " + scoreGeschiedenis[i].Fout;
+            document.getElementById('matchGeschiedenis').appendChild(p)         
+        }
+    }
+}   
+
+terugKnop1.onclick = function () {
+    startPagina.style.display = "block"; //verander terug naar none
+    smoelenTrainer.style.display = "none";
+    instellingenPagina.style.display = "none";
+    geschiedenisPagina.style.display = "none";
+}
+
+terugKnop2.onclick = function () {
+    startPagina.style.display = "block"; //verander terug naar none
+    smoelenTrainer.style.display = "none";
+    instellingenPagina.style.display = "none";
+    geschiedenisPagina.style.display = "none";
 }
 
 function gridItems() {
@@ -75,13 +101,18 @@ function gridItems() {
     fotoArray.sort(() => Math.random() - 0.5);
 
     for (let i = 0; i < naamArray.length; i++) {
-        gridContainer.appendChild(naamArray[i]);
-        gridContainer.appendChild(fotoArray[i]);
+        gridContainer1.appendChild(naamArray[i]);
+        gridContainer2.appendChild(fotoArray[i]);
 
         //run functie "itemOnclick"
         //geef parameter [index] mee (Bijv op for loop 1 geeft hij "0" mee) 
         itemOnclick(naamArray[i].id, fotoArray[i].id);
     }
+}
+
+function matchGeschiedenis(){
+    scoreGeschiedenis.unshift({Goed: goedCount , Fout: foutCount});
+    console.log(scoreGeschiedenis);
 }
 
 function time(){
@@ -93,9 +124,11 @@ function time(){
         clearInterval(downloadTimer);
         document.getElementById("countdown").innerHTML = "tijd is om";
         setTimeout(() => {
+            matchGeschiedenis()
             startPagina.style.display = "block"; //verander terug naar none
             smoelenTrainer.style.display = "none";
-            gridContainer.innerHTML = "";
+            gridContainer1.innerHTML = "";
+            gridContainer2.innerHTML = "";
             document.getElementById("pointsGoed").innerHTML = "";
             document.getElementById("pointsFout").innerHTML = "";
             naamArray = [];
@@ -155,4 +188,3 @@ function getRadioBtn(){
         }
     }
 }
-
