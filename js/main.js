@@ -34,6 +34,7 @@ startKnop.onclick = function () {
     startPagina.style.display = "none"; //verander terug naar none
     instellingenPagina.style.display = "none";
     geschiedenisPagina.style.display = "none";
+    blindeVlekPagina.style.display = "none";
     smoelenTrainer.style.display = "block";
     gridItems()
     time()
@@ -44,28 +45,40 @@ instellingenKnop.onclick = function () {
     smoelenTrainer.style.display = "none";
     instellingenPagina.style.display = "block";
     geschiedenisPagina.style.display = "none";
+    blindeVlekPagina.style.display = "none";
+
 }
 
 geschiedenisKnop.onclick = function () {
     startPagina.style.display = "none"; //verander terug naar none
     smoelenTrainer.style.display = "none";
     instellingenPagina.style.display = "none";
+    blindeVlekPagina.style.display = "none";
     geschiedenisPagina.style.display = "block";
     document.getElementById('matchGeschiedenis').innerHTML = "";
     for (let i = 0; i < scoreGeschiedenis.length; i++) {
         if (i <= 10) {
             var p = document.createElement("p");
-            p.innerHTML = "Juiste antwoorden " + scoreGeschiedenis[i].Goed + " Onjuiste antwoorden " + scoreGeschiedenis[i].Fout;
+            p.innerHTML = "Juiste antwoorden " + scoreGeschiedenis[i].Goed + " Onjuiste antwoorden " + scoreGeschiedenis[i].Fout + " " + Date();
             document.getElementById('matchGeschiedenis').appendChild(p)         
         }
     }
-}   
+}
+
+blindeVlekKnop.onclick = function(){
+    startPagina.style.display = "none"; //verander terug naar none
+    smoelenTrainer.style.display = "none";
+    instellingenPagina.style.display = "none";
+    geschiedenisPagina.style.display = "none";
+    blindeVlekPagina.style.display = "block";
+}
 
 terugKnop1.onclick = function () {
     startPagina.style.display = "block"; //verander terug naar none
     smoelenTrainer.style.display = "none";
     instellingenPagina.style.display = "none";
     geschiedenisPagina.style.display = "none";
+    blindeVlekPagina.style.display = "none";
 }
 
 terugKnop2.onclick = function () {
@@ -73,6 +86,16 @@ terugKnop2.onclick = function () {
     smoelenTrainer.style.display = "none";
     instellingenPagina.style.display = "none";
     geschiedenisPagina.style.display = "none";
+    blindeVlekPagina.style.display = "none";
+}
+
+terugKnop3.onclick = function () {
+    startPagina.style.display = "block"; //verander terug naar none
+    smoelenTrainer.style.display = "none";
+    instellingenPagina.style.display = "none";
+    geschiedenisPagina.style.display = "none";
+    blindeVlekPagina.style.display = "none";
+
 }
 
 function gridItems() {

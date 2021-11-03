@@ -20,6 +20,10 @@
   display: none;
 }
 
+#blindeVlekPagina {
+  display: none;
+}
+
 #gridContainer {
   display: grid;
   grid-template-columns: auto auto;
