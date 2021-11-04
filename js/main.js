@@ -59,7 +59,7 @@ geschiedenisKnop.onclick = function () {
     for (let i = 0; i < scoreGeschiedenis.length; i++) {
         if (i <= 10) {
             var p = document.createElement("p");
-            p.innerHTML = "Juiste antwoorden " + scoreGeschiedenis[i].Goed + " Onjuiste antwoorden " + scoreGeschiedenis[i].Fout + " " + Date();
+            p.innerHTML = "Juiste antwoorden " + scoreGeschiedenis[i].Goed +" - "+ " Onjuiste antwoorden " + scoreGeschiedenis[i].Fout + " - " + scoreGeschiedenis[i].tijd;
             document.getElementById('matchGeschiedenis').appendChild(p)         
         }
     }
@@ -71,6 +71,9 @@ blindeVlekKnop.onclick = function(){
     instellingenPagina.style.display = "none";
     geschiedenisPagina.style.display = "none";
     blindeVlekPagina.style.display = "block";
+    for (let i = 0; i < array.length; i++) {
+        
+    }
 }
 
 terugKnop1.onclick = function () {
@@ -134,7 +137,7 @@ function gridItems() {
 }
 
 function matchGeschiedenis(){
-    scoreGeschiedenis.unshift({Goed: goedCount , Fout: foutCount});
+    scoreGeschiedenis.unshift({Goed: goedCount , Fout: foutCount, tijd: Date()});
     console.log(scoreGeschiedenis);
 }
 
