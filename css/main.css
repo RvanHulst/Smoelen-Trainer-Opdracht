@@ -36,8 +36,13 @@
   text-align: center;
   cursor: pointer;
   transition: 0.3s;
+  height: 10rem;
 }
 
 .gridItem:hover {
   background-color: lightgray;
+}
+
+img{
+  max-height: 10rem;
 }
