@@ -2,6 +2,7 @@ var scoreGeschiedenis = []
 
 var naamArray = []
 var fotoArray = []
+var resultArray = []
 
 var naamCompare;
 var fotoCompare;
@@ -76,17 +77,18 @@ blindeVlekKnop.onclick = function(){
     instellingenPagina.style.display = "none";
     geschiedenisPagina.style.display = "none";
     blindeVlekPagina.style.display = "block";
-    console.log(fotoPersoon.sort((a,b) => (a.punten < b.punten) ? 1 : ((b.punten < a.punten) ? -1 : 0)))
-    for (let i = 0; i < array.length; i++) {
+    fotoPersoon.sort((a,b) => (a.punten < b.punten) ? 1 : ((b.punten < a.punten) ? -1 : 0));
+    for (let i = 0; i < 3; i++) {
+        console.log(fotoPersoon[i].name)
+        var p = document.createElement("p");
+        p.innerHTML = "Meeste fouten antwoorden " + fotoPersoon[i].name + " Aantal fouten punten" + fotoPersoon[i].punten;
+        document.getElementById('blindeVlekGeschiedenis').appendChild(p)           
+
+
         //zorgen dat alleen de 3 fouten zichtbaar zijn
     
        
         // met een if statement het ophalen en zorgen dat die alleen de meeste punten qua fout laat zien.
-
-
-        if ( result.punten = 1)
-        var result = fotoPersoon.find( ({ name }) => name === parameter.id);
-        result.punten = result.punten + 1;
         
     }
 }
