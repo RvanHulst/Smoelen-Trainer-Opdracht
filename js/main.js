@@ -2,7 +2,6 @@ var scoreGeschiedenis = []
 
 var naamArray = []
 var fotoArray = []
-var resultArray = []
 var blindeVlekPunten = []
 
 var naamCompare;
@@ -24,19 +23,6 @@ var fotoPersoon = [
  {name: 'TheodoreRoosevelt ', source: 'https://upload.wikimedia.org/wikipedia/commons/1/1c/President_Roosevelt_-_Pach_Bros.jpg', punten: 0},
  {name: 'HarryPotter', source: 'https://upload.wikimedia.org//wikipedia/en/d/d7/Harry_Potter_character_poster.jpg', punten: 0}
 ];
-
-
-window.onload = function() {
-    var aantalMensen = document.getElementsByClassName('aantalMensen'); // haal radio buttons op bij class.
-
-    for (let i = 0; i < aantalMensen.length; i++) {
-        console.log(aantalMensen)
-        if (aantalMensen[i].checked == true) {
-            console.log("het werkt")
-        }
-    }
-}
-
 startKnop.onclick = function () {
     startPagina.style.display = "none"; //verander terug naar none
     instellingenPagina.style.display = "none";
@@ -53,7 +39,6 @@ instellingenKnop.onclick = function () {
     instellingenPagina.style.display = "block";
     geschiedenisPagina.style.display = "none";
     blindeVlekPagina.style.display = "none";
-
 }
 
 geschiedenisKnop.onclick = function () {
@@ -78,18 +63,19 @@ blindeVlekKnop.onclick = function(){
     instellingenPagina.style.display = "none";
     geschiedenisPagina.style.display = "none";
     blindeVlekPagina.style.display = "block";
-    blindeVlekPunten.sort((a,b) => (a < b) ? 1 : ((b < a) ? -1 : 0));
-    for (let i = 0; i < 3; i++) {
-        if (blindeVlekPunten != 0){
-            if (i <= 5) {
-            console.log(blindeVlekPunten[i].name)
-            var p = document.createElement("p");
-            p.innerHTML = "Meeste fouten antwoorden " + blindeVlekPunten[i] + " Aantal fouten punten " + blindeVlekPunten[i].punten;
-            document.getElementById('blindeVlekGeschiedenis').appendChild(p)           
+   document.getElementById("blindeVlekGeschiedenis").innerHTML = "";
+    for (let i = 0; i < blindeVlekPunten.length; i++) {
+        blindeVlekPunten[i].sort((a,b) => (a.punten < b.punten) ? 1 : ((b.punten < a.punten) ? -1 : 0));
+        if (blindeVlekPunten != 0 && i <= 5){
+            console.log(blindeVlekPunten[i].length)
+                for (let index = 0; index < 3; index++) {
+                    var p = document.createElement("p");
+                    p.innerHTML = "Meeste fouten antwoorden " + blindeVlekPunten[i][index].name + " Aantal fouten punten " + blindeVlekPunten[i][index].punten;
+                    document.getElementById('blindeVlekGeschiedenis').appendChild(p)      
+                }     
             }        
         }
     }
-}
 
 terugKnop1.onclick = function () {
     startPagina.style.display = "block"; //verander terug naar none
@@ -118,9 +104,7 @@ terugKnop3.onclick = function () {
 
 function gridItems() {
     var persoonData = getRadioBtn();
-    if (!persoonData) {
-        persoonData = 5;
-    }
+
 
     for (let index = 0; index < persoonData; index++ ) {
         var naam = document.createElement("div");
@@ -184,10 +168,8 @@ function time(){
 
             var tempArray = [];
 
-            for (let i = 0; i <  fotoPersoon.length; i++) {
-                tempArray.push(fotoPersoon[i].name);
-                tempArray.push(fotoPersoon[i].punten);
-                
+            for (let i = 0; i <  getRadioBtn(); i++) {
+                tempArray.push({name: fotoPersoon[i].name, punten: fotoPersoon[i].punten});      
             }
            blindeVlekPunten.unshift(tempArray);
 
@@ -252,6 +234,9 @@ function getRadioBtn(){
     for (var i = 0, length = radios.length; i < length; i++) {
         if (radios[i].checked) {
             return radios[i].value;
+        }
+        else{
+           return 5;
         }
     }
 }
