@@ -3,6 +3,7 @@ var scoreGeschiedenis = []
 var naamArray = []
 var fotoArray = []
 var resultArray = []
+var blindeVlekPunten = []
 
 var naamCompare;
 var fotoCompare;
@@ -77,19 +78,16 @@ blindeVlekKnop.onclick = function(){
     instellingenPagina.style.display = "none";
     geschiedenisPagina.style.display = "none";
     blindeVlekPagina.style.display = "block";
-    fotoPersoon.sort((a,b) => (a.punten < b.punten) ? 1 : ((b.punten < a.punten) ? -1 : 0));
+    blindeVlekPunten.sort((a,b) => (a < b) ? 1 : ((b < a) ? -1 : 0));
     for (let i = 0; i < 3; i++) {
-        console.log(fotoPersoon[i].name)
-        var p = document.createElement("p");
-        p.innerHTML = "Meeste fouten antwoorden " + fotoPersoon[i].name + " Aantal fouten punten" + fotoPersoon[i].punten;
-        document.getElementById('blindeVlekGeschiedenis').appendChild(p)           
-
-
-        //zorgen dat alleen de 3 fouten zichtbaar zijn
-    
-       
-        // met een if statement het ophalen en zorgen dat die alleen de meeste punten qua fout laat zien.
-        
+        if (blindeVlekPunten != 0){
+            if (i <= 5) {
+            console.log(blindeVlekPunten[i].name)
+            var p = document.createElement("p");
+            p.innerHTML = "Meeste fouten antwoorden " + blindeVlekPunten[i] + " Aantal fouten punten " + blindeVlekPunten[i].punten;
+            document.getElementById('blindeVlekGeschiedenis').appendChild(p)           
+            }        
+        }
     }
 }
 
@@ -183,6 +181,27 @@ function time(){
             fotoArray = [];
             foutCount = 0;
             goedCount = 0;
+
+            var tempArray = [];
+
+            for (let i = 0; i <  fotoPersoon.length; i++) {
+                tempArray.push(fotoPersoon[i].name);
+                tempArray.push(fotoPersoon[i].punten);
+                
+            }
+           blindeVlekPunten.unshift(tempArray);
+
+            for (let index = 0; index < fotoPersoon.length; index++) {
+                fotoPersoon[index].punten = 0;
+                
+            }
+            
+
+// maak een lege array aan  boven de for loop en tijdens de eerste for loop vult die blindebelekkepunten.
+// vul die met de punten 
+// daarna gaat die met een andere for loop de  array fotopersoon leeg maken maar de lege array boven aan staat dan nog vol met de punten.
+
+
         }, 3000);
     } else {
         document.getElementById("countdown").innerHTML = timeleft + " seconds remaining";
