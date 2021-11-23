@@ -8,20 +8,11 @@
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 
-#smoelenTrainer {
+.hidden {
   display: none;
 }
-
-#instellingenPagina {
-  display: none;
-}
-
-#geschiedenisPagina {
-  display: none;
-}
-
-#blindeVlekPagina {
-  display: none;
+.shown {
+  display: block;
 }
 
 #gridContainer {
@@ -43,6 +34,6 @@
   background-color: lightgray;
 }
 
-img{
+img {
   max-height: 10rem;
 }
