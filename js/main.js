@@ -25,17 +25,17 @@ var persons = [
 
 function displayAllHidden(){
     //give everything hidden
-    instellingenPagina.classList.add("hidden");
+    settingsPage.classList.add("hidden");
     smoelenTrainer.classList.add("hidden");
-    startPagina.classList.add("hidden");
-    geschiedenisPagina.classList.add("hidden");
-    blindeVlekPagina.classList.add("hidden");
+    startPage.classList.add("hidden");
+    historyPage.classList.add("hidden");
+    blindeVlekPage.classList.add("hidden");
 
-    instellingenPagina.classList.remove("shown");
+    settingsPage.classList.remove("shown");
     smoelenTrainer.classList.remove("shown");
-    startPagina.classList.remove("shown");
-    geschiedenisPagina.classList.remove("shown");
-    blindeVlekPagina.classList.remove("shown");
+    startPage.classList.remove("shown");
+    historyPage.classList.remove("shown");
+    blindeVlekPage.classList.remove("shown");
 }
 
 backButtons.forEach(backButton => backButton.onclick = () => switchDisplay());
@@ -50,14 +50,14 @@ startButton.onclick = () => {
 
 settingsButton.onclick = () => {
     displayAllHidden() 
-    instellingenPagina.classList.remove("hidden");
-    instellingenPagina.classList.add("shown");
+    settingsPage.classList.remove("hidden");
+    settingsPage.classList.add("shown");
 }
 
 historyButton.onclick = () => {
     displayAllHidden() 
-    geschiedenisPagina.classList.remove("hidden");
-    geschiedenisPagina.classList.add("shown");
+    historyPage.classList.remove("hidden");
+    historyPage.classList.add("shown");
 
     document.getElementById('matchHistory').innerHTML = "";
     for (let i = 0; i < scoreHistory.length; i++) {
@@ -71,17 +71,17 @@ historyButton.onclick = () => {
 
 blindeVlekButton.onclick = () => {
     displayAllHidden() 
-    blindeVlekPagina.classList.remove("hidden");
-    blindeVlekPagina.classList.add("shown");
+    blindeVlekPage.classList.remove("hidden");
+    blindeVlekPage.classList.add("shown");
 
-   document.getElementById("blindeVlekGeschiedenis").innerHTML = "";
+   document.getElementById("blindeVlekHistory").innerHTML = "";
     for (let i = 0; i < blindeVlekPoints.length; i++) {
         blindeVlekPoints[i].sort((a,b) => (a.points < b.points) ? 1 : ((b.points < a.points) ? -1 : 0));
         if (blindeVlekPoints != 0 && i <= 5){
             for (let index = 0; index < 3; index++) {
                 var p = document.createElement("p");
                 p.innerHTML = "Meeste fouten antwoorden " + blindeVlekPoints[i][index].name + " Aantal fouten points " + blindeVlekPoints[i][index].points;
-                document.getElementById('blindeVlekGeschiedenis').appendChild(p)      
+                document.getElementById('blindeVlekHistory').appendChild(p)      
             }     
         }        
     }
@@ -89,8 +89,8 @@ blindeVlekButton.onclick = () => {
 
 function switchDisplay(){
     displayAllHidden() 
-    startPagina.classList.remove("hidden");
-    startPagina.classList.add("shown");
+    startPage.classList.remove("hidden");
+    startPage.classList.add("shown");
 }
 
 function gridItems() {
@@ -144,13 +144,13 @@ function setGameTimeCounter(){
             matchHistory()
             displayAllHidden() 
 
-            startPagina.classList.remove("hidden");
-            startPagina.classList.add("shown");
+            startPage.classList.remove("hidden");
+            startPage.classList.add("shown");
 
             gridContainer1.innerHTML = "";
             gridContainer2.innerHTML = "";
-            document.getElementById("pointsGoed").innerHTML = "";
-            document.getElementById("pointsFout").innerHTML = "";
+            document.getElementById("correctAnswers").innerHTML = "";
+            document.getElementById("wrongAnswers").innerHTML = "";
             names = [];
             photos = [];
             incorrectAnswersCounter = 0;
@@ -191,14 +191,16 @@ function checkClick(parameter){
             lastClick.classList.add("hidden");
             lastClick = "";
             correctAnswersCounter = correctAnswersCounter + 1;
-            document.getElementById("pointsGoed").innerHTML = correctAnswersCounter + "Heeft u er goed";
+            document.getElementById("correctAnswers").innerHTML = correctAnswersCounter + "Heeft u er goed";
         }
         else{
             lastClick = "";
             incorrectAnswersCounter = incorrectAnswersCounter + 1;
-            document.getElementById("pointsFout").innerHTML = incorrectAnswersCounter  + "Heeft u er fout";
-            var result = persons.find( ( name ) => name === parameter.id);
+            document.getElementById("wrongAnswers").innerHTML = incorrectAnswersCounter  + "Heeft u er fout";
+            var result = persons.find( ({ name }) => name === parameter.id);
+            console.log(result);
             result.points = (result.points + 1);
+            
         }
     }
     else{
@@ -208,7 +210,7 @@ function checkClick(parameter){
 }
 
 function getPlayerCount(){
-    var radios = document.getElementsByName('spelerAantal');
+    var radios = document.getElementsByName('playerCount');
     var playerCount = 5;
 
     for (var i = 0, length = radios.length; i < length; i++) {
