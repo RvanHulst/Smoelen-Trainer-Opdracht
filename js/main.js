@@ -94,27 +94,27 @@ function switchDisplay(){
 }
 
 function gridItems() {
-    var persoonData = getPlayerCount();
+    var personData = getPlayerCount();
 
 
-    for (let index = 0; index < persoonData; index++ ) {
-        var naam = document.createElement("div");
-        var fotoDiv = document.createElement("div");
-        var foto = document.createElement("img");
+    for (let index = 0; index < personData; index++ ) {
+        var name = document.createElement("div");
+        var photoDiv = document.createElement("div");
+        var photo = document.createElement("img");
 
-        naam.innerHTML = persons[index].name;
-        foto.src = persons[index].source;
+        name.innerHTML = persons[index].name;
+        photo.src = persons[index].source;
  
-        naam.id = persons[index].name;
-        fotoDiv.id = persons[index].name;
+        name.id = persons[index].name;
+        photoDiv.id = persons[index].name;
 
-        naam.classList.add("gridItem")
-        fotoDiv.classList.add("gridItem")
+        name.classList.add("gridItem")
+        photoDiv.classList.add("gridItem")
 
-        fotoDiv.appendChild(foto);
+        photoDiv.appendChild(photo);
 
-        names.push(naam);
-        photos.push(fotoDiv);
+        names.push(name);
+        photos.push(photoDiv);
     }
     names.sort(() => Math.random() - 0.5);
     photos.sort(() => Math.random() - 0.5);
